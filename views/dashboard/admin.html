@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Dashboard • LostNFound</title>
+    <link rel="stylesheet" href="../../public/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="../home/index.html">LostNFound</a>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <!-- inject: nav_items -->
+          <ul>
+            <li><a href="../reports/index.html">Search</a></li>
+            <li><a href="admin.html" aria-current="page">Admin</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <button
+            id="menuToggle"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="siteNav"
+          >
+            Menu
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <div class="tabs" role="tablist">
+            <a
+              class="tab tab--active"
+              href="#adminReports"
+              role="tab"
+              aria-selected="true"
+              >All Reports</a
+            >
+            <a class="tab" href="#adminUsers" role="tab" aria-selected="false"
+              >All Users</a
+            >
+            <a
+              class="tab"
+              href="#adminAddFound"
+              role="tab"
+              aria-selected="false"
+              >Add Found Report</a
+            >
+          </div>
+
+          <div id="adminReports">
+            <h1 class="section__title">All Reports</h1>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Reporter</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- inject: all_reports rows from controller -->
+                  <tr>
+                    <td>
+                      <img
+                        src="https://via.placeholder.com/80x60"
+                        alt="thumb"
+                      />
+                    </td>
+                    <td>USB Drive</td>
+                    <td><span class="badge badge--found">FOUND</span></td>
+                    <td><span class="status status--active">Active</span></td>
+                    <td>Jane Doe</td>
+                    <td>
+                      <button
+                        class="btn btn--found"
+                        data-modal-open="admin-review"
+                      >
+                        Review
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="adminUsers" class="is-hidden">
+            <h1 class="section__title">All Users</h1>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>NIM</th>
+                    <th>Major/Department</th>
+                    <th>Phone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- inject: all_users rows from controller -->
+                  <tr>
+                    <td>John Doe</td>
+                    <td>john@example.com</td>
+                    <td>202012345</td>
+                    <td>Computer Science</td>
+                    <td>+62 812-0000-0000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="adminAddFound" class="is-hidden">
+            <h1 class="section__title">Add Found Report</h1>
+            <form class="form" action="" method="post">
+              <!-- inject: admin found form action url -->
+              <div class="form__row">
+                <div>
+                  <label for="af_category">Category</label>
+                  <select
+                    class="select"
+                    id="af_category"
+                    name="category"
+                    required
+                  >
+                    <!-- inject: categories options -->
+                    <option value="electronics">Electronics</option>
+                    <option value="documents">Documents</option>
+                    <option value="accessories">Accessories</option>
+                    <option value="others">Others</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="af_title">Title</label>
+                  <input
+                    class="input"
+                    id="af_title"
+                    name="title"
+                    type="text"
+                    placeholder="e.g., Black backpack"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="af_description">Description</label>
+                <textarea
+                  class="textarea"
+                  id="af_description"
+                  name="description"
+                  placeholder="Brief description"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form__row">
+                <div>
+                  <label for="af_location_found">Location Found</label>
+                  <input
+                    class="input"
+                    id="af_location_found"
+                    name="location_found"
+                    type="text"
+                    placeholder="e.g., Library front desk"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="af_photo">Photo Upload</label>
+                  <input
+                    class="file-input"
+                    id="af_photo"
+                    name="photo"
+                    type="file"
+                    accept="image/*"
+                  />
+                </div>
+              </div>
+
+              <div class="form__row">
+                <div>
+                  <label for="af_verification_question"
+                    >Verification Question</label
+                  >
+                  <input
+                    class="input"
+                    id="af_verification_question"
+                    name="verification_question"
+                    type="text"
+                    placeholder="e.g., What is the wallpaper?"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form__actions">
+                <button class="btn btn--found" type="submit">
+                  Add Found Report
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div
+      class="modal"
+      id="modal-admin-review"
+      data-modal="admin-review"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="adminReviewTitle"
+    >
+      <div class="modal__overlay" data-modal-close="admin-review"></div>
+      <div class="modal__dialog">
+        <div class="modal__content">
+          <div class="modal__header">
+            <h2 id="adminReviewTitle">Review Report</h2>
+            <button
+              class="btn btn--ghost"
+              data-modal-close="admin-review"
+              aria-label="Close"
+            >
+              Close
+            </button>
+          </div>
+          <div class="modal__body">
+            <p>
+              <strong>Title:</strong>
+              <!-- inject: review_title -->USB Drive
+            </p>
+            <p>
+              <strong>Type:</strong>
+              <!-- inject: review_type -->FOUND
+            </p>
+            <p>
+              <strong>Reporter:</strong>
+              <!-- inject: review_reporter -->Jane Doe
+            </p>
+            <p>
+              <strong>Description:</strong>
+              <!-- inject: review_description -->Black USB drive with keychain
+              loop.
+            </p>
+          </div>
+          <div class="modal__actions">
+            <button
+              class="btn btn--lost"
+              type="button"
+              data-modal-close="admin-review"
+            >
+              Delete
+            </button>
+            <button
+              class="btn btn--ghost"
+              type="button"
+              data-modal-close="admin-review"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../public/js/main.js" defer></script>
+  </body>
+</html>

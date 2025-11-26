@@ -57,6 +57,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const reportForm = document.querySelector("[data-report-form]");
   if (reportForm) {
+    const params = new URLSearchParams(window.location.search);
+    const idParam = params.get("id");
+    const typeParam = params.get("type");
+    const idInput = document.getElementById("report_id");
+    const typeInput = document.getElementById("report_type");
+    if (idInput && idParam) idInput.value = idParam;
+    if (typeInput && typeParam) typeInput.value = typeParam;
     const tabs = Array.from(document.querySelectorAll("[data-report-type]"));
     const lostGroups = Array.from(
       document.querySelectorAll('[data-group="lost"]')
@@ -66,6 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     const locationLabel = document.getElementById("locationLabel");
     const submitBtn = reportForm.querySelector('[data-submit="report"]');
+    const vq = document.getElementById("verification_question");
+    const va = document.getElementById("verification_answer");
 
     function setMode(mode) {
       tabs.forEach((t) => {
@@ -94,9 +103,12 @@ document.addEventListener("DOMContentLoaded", () => {
         submitBtn.classList.toggle("btn--lost", showLost);
         submitBtn.classList.toggle("btn--found", !showLost);
       }
+
+      if (vq) vq.required = !showLost;
+      if (va) va.required = !showLost;
     }
 
-    const urlMode = new URLSearchParams(window.location.search).get("type");
+    const urlMode = typeParam;
     setMode(urlMode === "found" ? "found" : "lost");
 
     tabs.forEach((t) => {
@@ -109,29 +121,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const dashTabs = document.querySelectorAll('.tabs a[role="tab"]');
   if (dashTabs.length) {
-    const sections = {
-      reportsSection: document.getElementById("reportsSection"),
-      claimsSection: document.getElementById("claimsSection"),
-      notificationsSection: document.getElementById("notificationsSection"),
-      profileSection: document.getElementById("profileSection"),
-    };
+    const sectionsMap = {};
+    dashTabs.forEach((tab) => {
+      const targetId = tab.getAttribute("href")?.replace("#", "");
+      if (targetId) {
+        const el = document.getElementById(targetId);
+        if (el) sectionsMap[targetId] = el;
+      }
+    });
 
-    function showSection(id) {
-      Object.entries(sections).forEach(([key, el]) => {
-        if (!el) return;
-        const active = key === id;
-        el.classList.toggle("is-hidden", !active);
+    function showSection(targetId) {
+      Object.entries(sectionsMap).forEach(([id, el]) => {
+        el.classList.toggle("is-hidden", id !== targetId);
       });
-
       dashTabs.forEach((tab) => {
-        const target = tab.getAttribute("href")?.replace("#", "");
-        const active = target === id;
+        const id = tab.getAttribute("href")?.replace("#", "");
+        const active = id === targetId;
         tab.classList.toggle("tab--active", active);
         tab.setAttribute("aria-selected", String(active));
       });
     }
 
-    showSection("reportsSection");
+    const firstTabTarget = dashTabs[0].getAttribute("href")?.replace("#", "");
+    if (firstTabTarget) showSection(firstTabTarget);
 
     dashTabs.forEach((tab) => {
       tab.addEventListener("click", (e) => {

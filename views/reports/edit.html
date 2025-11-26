@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edit Report • LostNFound</title>
+    <link rel="stylesheet" href="../../public/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="../home/index.html">LostNFound</a>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="index.html">Search</a></li>
+            <li><a href="create_report.html">Post Report</a></li>
+            <li><a href="../dashboard/user.html">Dashboard</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <button
+            id="menuToggle"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="siteNav"
+          >
+            Menu
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <h1 class="section__title">Edit Report</h1>
+
+          <!-- inject: edit_context (rendered for specific report id/type) -->
+
+          <form class="form" data-report-form action="" method="post">
+            <input type="hidden" id="report_id" name="id" />
+            <input type="hidden" id="report_type" name="type" />
+            <div class="form__row">
+              <div>
+                <label for="category">Category</label>
+                <select class="select" id="category" name="category" required>
+                  <option value="electronics">Electronics</option>
+                  <option value="documents">Documents</option>
+                  <option value="accessories">Accessories</option>
+                  <option value="others">Others</option>
+                </select>
+              </div>
+              <div>
+                <label for="title">Title</label>
+                <input
+                  class="input"
+                  id="title"
+                  name="title"
+                  type="text"
+                  placeholder="e.g., Black backpack"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="description">Description</label>
+              <textarea
+                class="textarea"
+                id="description"
+                name="description"
+                placeholder="Brief description"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form__row">
+              <div>
+                <label for="location" id="locationLabel">Location Lost</label>
+                <input
+                  class="input"
+                  id="location"
+                  name="location"
+                  type="text"
+                  placeholder="e.g., Library front desk"
+                  required
+                />
+              </div>
+              <div>
+                <label for="photo">Photo Upload</label>
+                <input
+                  class="file-input"
+                  id="photo"
+                  name="photo"
+                  type="file"
+                  accept="image/*"
+                />
+              </div>
+            </div>
+
+            <div class="notice" role="note" data-group="lost">
+              <div>
+                Your Name and Phone Number will be visible to help verify
+                ownership.
+              </div>
+            </div>
+
+            <div
+              class="notice"
+              role="note"
+              data-group="found"
+              style="display: none"
+            >
+              <div>
+                Add a verification question and a hidden answer to validate
+                claims.
+              </div>
+            </div>
+
+            <div class="form__row" data-group="found" style="display: none">
+              <div>
+                <label for="verification_question">Verification Question</label>
+                <input
+                  class="input"
+                  id="verification_question"
+                  name="verification_question"
+                  type="text"
+                  placeholder="e.g., What is the wallpaper?"
+                />
+              </div>
+              <div>
+                <label for="verification_answer">Hidden Answer</label>
+                <input
+                  class="input"
+                  id="verification_answer"
+                  name="verification_answer"
+                  type="text"
+                  placeholder="Answer kept hidden"
+                />
+              </div>
+            </div>
+
+            <div class="form__actions">
+              <a class="btn btn--ghost" href="../dashboard/user.html">Cancel</a>
+              <button class="btn btn--found" data-submit="report" type="submit">
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="../../public/js/main.js" defer></script>
+  </body>
+</html>
