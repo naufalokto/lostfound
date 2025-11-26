@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>User Dashboard • LostNFound</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="../home/index.html">LostNFound</a>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <!-- inject: nav_items -->
+          <ul>
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="../reports/index.html">Search</a></li>
+            <li><a href="../reports/create_report.html">Post Report</a></li>
+            <li><a href="user.html" aria-current="page">Dashboard</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <button
+            id="menuToggle"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="siteNav"
+          >
+            Menu
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <div class="tabs" role="tablist">
+            <a
+              class="tab tab--active"
+              href="#reportsSection"
+              role="tab"
+              aria-selected="true"
+              >Your Reports</a
+            >
+            <a
+              class="tab"
+              href="#claimsSection"
+              role="tab"
+              aria-selected="false"
+              >Incoming Claims</a
+            >
+            <a
+              class="tab"
+              href="#notificationsSection"
+              role="tab"
+              aria-selected="false"
+              >Notification</a
+            >
+            <a
+              class="tab"
+              href="#profileSection"
+              role="tab"
+              aria-selected="false"
+              >Profile</a
+            >
+          </div>
+
+          <div id="reportsSection">
+            <h1 class="section__title">Your Reports</h1>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- inject: user_reports rows from controller -->
+                  <tr>
+                    <td>
+                      <img
+                        src="https://via.placeholder.com/80x60"
+                        alt="thumb"
+                      />
+                    </td>
+                    <td>USB Drive</td>
+                    <td><span class="badge badge--found">FOUND</span></td>
+                    <td><span class="status status--active">Active</span></td>
+                    <td>
+                      <a class="btn btn--ghost" href="#">Edit</a>
+                      <button class="btn btn--lost" type="button">
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="profileSection" class="is-hidden">
+            <h2 class="section__title" style="margin-top: 1.25rem">
+              Profile Information
+            </h2>
+            <div class="card">
+              <div class="card__body">
+                <form class="form" action="" method="post">
+                  <!-- inject: profile form action url -->
+                  <div class="form__row">
+                    <div>
+                      <label for="profile_name">Name</label>
+                      <input
+                        class="input"
+                        id="profile_name"
+                        name="name"
+                        type="text"
+                      />
+                    </div>
+                    <div>
+                      <label for="profile_email">Email</label>
+                      <input
+                        class="input"
+                        id="profile_email"
+                        name="email"
+                        type="email"
+                      />
+                    </div>
+                  </div>
+                  <div class="form__row">
+                    <div>
+                      <label for="profile_nim">Student ID (NIM)</label>
+                      <input
+                        class="input"
+                        id="profile_nim"
+                        name="nim"
+                        type="text"
+                      />
+                    </div>
+                    <div>
+                      <label for="profile_major">Major/Department</label>
+                      <input
+                        class="input"
+                        id="profile_major"
+                        name="major"
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label for="profile_phone">Phone Number</label>
+                    <input
+                      class="input"
+                      id="profile_phone"
+                      name="phone"
+                      type="tel"
+                    />
+                  </div>
+                  <div class="form__actions">
+                    <button class="btn btn--found" type="submit">
+                      Save Profile
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div id="claimsSection" class="is-hidden">
+            <h2 class="section__title" style="margin-top: 1.25rem">
+              Incoming Claims
+            </h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Claimant</th>
+                    <th>Question</th>
+                    <th>Submitted Answer</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- inject: incoming_claims rows from controller -->
+                  <tr>
+                    <td>USB Drive</td>
+                    <td>John D.</td>
+                    <td>What is the wallpaper?</td>
+                    <td>Blue ocean</td>
+                    <td>
+                      <button
+                        class="btn btn--found"
+                        data-modal-open="review-claim"
+                      >
+                        Review
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="notificationsSection" class="is-hidden">
+            <h2 class="section__title" style="margin-top: 1.25rem">
+              Notification
+            </h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Reporter</th>
+                    <th>Contact</th>
+                    <th>Date Approved</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- inject: notifications rows from controller -->
+                  <tr>
+                    <td>Wallet</td>
+                    <td>Mary K.</td>
+                    <td>
+                      <span>Email:</span> mary@example.com
+                      <span style="margin-left: 0.5rem">Phone:</span> +62
+                      812-0000-0000
+                    </td>
+                    <td>2025-11-24</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div
+      class="modal"
+      id="modal-review-claim"
+      data-modal="review-claim"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="reviewTitle"
+    >
+      <div class="modal__overlay" data-modal-close="review-claim"></div>
+      <div class="modal__dialog">
+        <div class="modal__content">
+          <div class="modal__header">
+            <h2 id="reviewTitle">Review Claim</h2>
+            <button
+              class="btn btn--ghost"
+              data-modal-close="review-claim"
+              aria-label="Close"
+            >
+              Close
+            </button>
+          </div>
+          <div class="modal__body">
+            <p>
+              <strong>Verification Question:</strong>
+              <!-- inject: question -->What is the wallpaper?
+            </p>
+            <p>
+              <strong>Submitted Answer:</strong>
+              <!-- inject: claimant_answer -->Blue ocean
+            </p>
+            <p>
+              <strong>Claimant:</strong>
+              <!-- inject: claimant_name -->John D. •
+              <!-- inject: claimant_contact -->john@example.com
+            </p>
+          </div>
+          <div class="modal__actions">
+            <button
+              class="btn btn--lost"
+              type="button"
+              data-modal-close="review-claim"
+            >
+              Reject
+            </button>
+            <button
+              class="btn btn--found"
+              type="button"
+              data-modal-close="review-claim"
+            >
+              Approve
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/public/js/main.js" defer></script>
+  </body>
+</html>

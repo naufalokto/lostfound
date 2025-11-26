@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reports • LostNFound</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="../home/index.html">LostNFound</a>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <!-- inject: nav_items -->
+          <ul>
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="index.html" aria-current="page">Search</a></li>
+            <li><a href="create_report.html">Post Report</a></li>
+            <li><a href="../dashboard/user.html">Dashboard</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <button
+            id="menuToggle"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="siteNav"
+          >
+            Menu
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <div class="tabs" role="tablist">
+            <a
+              class="tab tab--active"
+              href="#lost"
+              role="tab"
+              aria-selected="true"
+              >Lost Items</a
+            >
+            <a class="tab" href="#found" role="tab" aria-selected="false"
+              >Found Items</a
+            >
+          </div>
+
+          <div class="filter-bar">
+            <input
+              class="input"
+              type="search"
+              placeholder="Search by title or location"
+            />
+            <select class="select">
+              <!-- inject: categories options -->
+              <option value="">All Categories</option>
+              <option value="electronics">Electronics</option>
+              <option value="documents">Documents</option>
+              <option value="accessories">Accessories</option>
+            </select>
+          </div>
+
+          <div id="lost" class="grid grid--reports">
+            <!-- inject: lost_reports cards from controller -->
+            <article class="card">
+              <a href="show.html?type=lost"
+                ><img
+                  class="card__thumb"
+                  src="https://via.placeholder.com/640x480"
+                  alt="Item thumbnail"
+              /></a>
+              <div class="card__body">
+                <div class="badge badge--lost">LOST</div>
+                <strong>Wallet</strong>
+                <div class="card__meta">
+                  <span>2025-11-21</span><span>Library</span>
+                </div>
+                <div class="form__actions">
+                  <a class="btn btn--lost" href="show.html?type=lost"
+                    >View Details</a
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div id="found" class="grid grid--reports" style="margin-top: 1rem">
+            <!-- inject: found_reports cards from controller -->
+            <article class="card">
+              <a href="show.html?type=found"
+                ><img
+                  class="card__thumb"
+                  src="https://via.placeholder.com/640x480"
+                  alt="Item thumbnail"
+              /></a>
+              <div class="card__body">
+                <div class="badge badge--found">FOUND</div>
+                <strong>USB Drive</strong>
+                <div class="card__meta">
+                  <span>2025-11-22</span><span>Cafeteria</span>
+                </div>
+                <div class="form__actions">
+                  <a class="btn btn--found" href="show.html?type=found"
+                    >Claim This Item</a
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/public/js/main.js" defer></script>
+  </body>
+</html>

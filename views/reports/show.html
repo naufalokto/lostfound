@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Item Detail • LostNFound</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="../home/index.html">LostNFound</a>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <!-- inject: nav_items from controller based on routes -->
+          <ul>
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="index.html">Search</a></li>
+            <li><a href="create_report.html">Post Report</a></li>
+            <li><a href="../dashboard/user.html">Dashboard</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <!-- inject: auth_state (if logged in, show profile dropdown) -->
+          <a href="../auth/login.html" class="btn btn--ghost">Login</a>
+          <a href="../auth/register.html" class="btn btn--found">Register</a>
+          <button
+            id="menuToggle"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="siteNav"
+          >
+            Menu
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <div class="detail">
+            <div class="detail__image">
+              <!-- inject: item_image -->
+              <img src="https://via.placeholder.com/900x700" alt="Item image" />
+            </div>
+            <div class="detail__body">
+              <div class="badge badge--lost" data-type-group="lost">LOST</div>
+              <div class="badge badge--found" data-type-group="found">
+                FOUND
+              </div>
+              <h1><!-- inject: item_title -->USB Drive</h1>
+              <div class="detail__meta">
+                <span><!-- inject: date -->2025-11-22</span>
+                <span><!-- inject: location -->Cafeteria</span>
+              </div>
+              <p>
+                <!-- inject: description -->Black USB drive with keychain loop.
+              </p>
+              <div data-type-group="lost">
+                <h3 class="section__title">Contact Information</h3>
+                <div class="notice">
+                  <div>
+                    <!-- inject: owner_name -->Owner: Jane Doe<br />
+                    <!-- inject: owner_email -->Email: jane@example.com<br />
+                    <!-- inject: owner_phone -->Phone: +62 812-0000-0000
+                  </div>
+                </div>
+              </div>
+
+              <div class="form__actions" data-type-group="found">
+                <button class="btn btn--found" data-modal-open="claim">
+                  Claim This Item
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div
+      class="modal"
+      id="modal-claim"
+      data-modal="claim"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="claimTitle"
+    >
+      <div class="modal__overlay" data-modal-close="claim"></div>
+      <div class="modal__dialog">
+        <div class="modal__content">
+          <div class="modal__header">
+            <h2 id="claimTitle">Claim Verification</h2>
+            <button
+              class="btn btn--ghost"
+              data-modal-close="claim"
+              aria-label="Close"
+            >
+              Close
+            </button>
+          </div>
+          <div class="modal__body">
+            <p><!-- inject: verification_question -->What is the wallpaper?</p>
+            <label for="claim_answer">Your Answer</label>
+            <textarea
+              class="textarea"
+              id="claim_answer"
+              placeholder="Type your answer..."
+              required
+            ></textarea>
+          </div>
+          <div class="modal__actions">
+            <button class="btn btn--ghost" data-modal-close="claim">
+              Cancel
+            </button>
+            <button class="btn btn--found" id="submitClaim" type="button">
+              Submit Claim
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/public/js/main.js" defer></script>
+  </body>
+</html>

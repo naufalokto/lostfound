@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Register • LostNFound</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="../home/index.html">LostNFound</a>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <!-- inject: nav_items -->
+          <ul>
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="../reports/index.html">Search</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <button
+            id="menuToggle"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="siteNav"
+          >
+            Menu
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container" style="max-width: 480px">
+          <div class="card">
+            <div class="card__body">
+              <h1 class="section__title">Create your account</h1>
+              <form class="form" action="" method="post">
+                <!-- inject: form action url -->
+                <div>
+                  <label for="name">Name</label>
+                  <input
+                    class="input"
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input
+                    class="input"
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="password">Password</label>
+                  <input
+                    class="input"
+                    id="password"
+                    name="password"
+                    type="password"
+                    required
+                  />
+                </div>
+                <div class="form__actions">
+                  <button class="btn btn--found" type="submit">Register</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/public/js/main.js" defer></script>
+  </body>
+</html>

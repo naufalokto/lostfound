@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LostNFound • Home</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="index.html">LostNFound</a>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <!-- inject: nav_items from controller based on routes -->
+          <ul>
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="../reports/index.html">Search</a></li>
+            <li><a href="../reports/create_report.html">Post Report</a></li>
+            <li><a href="../dashboard/user.html">Dashboard</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <!-- inject: auth_state (if logged in, show profile dropdown) -->
+          <a href="../auth/login.html" class="btn btn--ghost">Login</a>
+          <a href="../auth/register.html" class="btn btn--found">Register</a>
+          <button
+            id="menuToggle"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="siteNav"
+          >
+            Menu
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1>Lost Something? Found Something?</h1>
+          <p>Digitizing the search for lost items on campus.</p>
+          <div class="cta-group">
+            <a
+              class="btn btn--lost"
+              href="../reports/create_report.html?type=lost"
+              >Report Lost</a
+            >
+            <a
+              class="btn btn--found"
+              href="../reports/create_report.html?type=found"
+              >Report Found</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section__header">
+            <h2 class="section__title">Latest Reports</h2>
+            <a href="../reports/index.html" class="btn btn--ghost"
+              >Browse All</a
+            >
+          </div>
+
+          <div class="grid grid--reports" id="latestReports">
+            <!-- inject: latest_reports cards from controller -->
+            <article class="card">
+              <a href="../reports/show.html"
+                ><img
+                  class="card__thumb"
+                  src="https://via.placeholder.com/640x480"
+                  alt="Item thumbnail"
+              /></a>
+              <div class="card__body">
+                <div class="badge badge--lost">LOST</div>
+                <strong>Wallet</strong>
+                <div class="card__meta">
+                  <span>2025-11-21</span><span>Library</span>
+                </div>
+              </div>
+            </article>
+            <article class="card">
+              <a href="../reports/show.html"
+                ><img
+                  class="card__thumb"
+                  src="https://via.placeholder.com/640x480"
+                  alt="Item thumbnail"
+              /></a>
+              <div class="card__body">
+                <div class="badge badge--found">FOUND</div>
+                <strong>USB Drive</strong>
+                <div class="card__meta">
+                  <span>2025-11-22</span><span>Cafeteria</span>
+                </div>
+              </div>
+            </article>
+            <article class="card">
+              <a href="../reports/show.html"
+                ><img
+                  class="card__thumb"
+                  src="https://via.placeholder.com/640x480"
+                  alt="Item thumbnail"
+              /></a>
+              <div class="card__body">
+                <div class="badge badge--lost">LOST</div>
+                <strong>Backpack</strong>
+                <div class="card__meta">
+                  <span>2025-11-20</span><span>Gym</span>
+                </div>
+              </div>
+            </article>
+            <article class="card">
+              <a href="../reports/show.html"
+                ><img
+                  class="card__thumb"
+                  src="https://via.placeholder.com/640x480"
+                  alt="Item thumbnail"
+              /></a>
+              <div class="card__body">
+                <div class="badge badge--found">FOUND</div>
+                <strong>Keys</strong>
+                <div class="card__meta">
+                  <span>2025-11-23</span><span>Parking Lot</span>
+                </div>
+              </div>
+            </article>
+            <article class="card">
+              <a href="../reports/show.html"
+                ><img
+                  class="card__thumb"
+                  src="https://via.placeholder.com/640x480"
+                  alt="Item thumbnail"
+              /></a>
+              <div class="card__body">
+                <div class="badge badge--lost">LOST</div>
+                <strong>Student ID</strong>
+                <div class="card__meta">
+                  <span>2025-11-18</span><span>Dorm A</span>
+                </div>
+              </div>
+            </article>
+            <article class="card">
+              <a href="../reports/show.html"
+                ><img
+                  class="card__thumb"
+                  src="https://via.placeholder.com/640x480"
+                  alt="Item thumbnail"
+              /></a>
+              <div class="card__body">
+                <div class="badge badge--found">FOUND</div>
+                <strong>Calculator</strong>
+                <div class="card__meta">
+                  <span>2025-11-24</span><span>Lab 3</span>
+                </div>
+              </div>
+            </article>
+            <article class="card">
+              <a href="../reports/show.html"
+                ><img
+                  class="card__thumb"
+                  src="https://via.placeholder.com/640x480"
+                  alt="Item thumbnail"
+              /></a>
+              <div class="card__body">
+                <div class="badge badge--lost">LOST</div>
+                <strong>Earbuds</strong>
+                <div class="card__meta">
+                  <span>2025-11-19</span><span>Shuttle</span>
+                </div>
+              </div>
+            </article>
+            <article class="card">
+              <a href="../reports/show.html"
+                ><img
+                  class="card__thumb"
+                  src="https://via.placeholder.com/640x480"
+                  alt="Item thumbnail"
+              /></a>
+              <div class="card__body">
+                <div class="badge badge--found">FOUND</div>
+                <strong>Notebook</strong>
+                <div class="card__meta">
+                  <span>2025-11-25</span><span>Lecture Hall B</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/public/js/main.js" defer></script>
+  </body>
+</html>

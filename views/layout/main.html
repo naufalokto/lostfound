@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LostNFound • Layout</title>
+    <link rel="stylesheet" href="../../public/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="../home/index.html">LostNFound</a>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <!-- inject: nav_items from controller based on routes -->
+          <ul>
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="../reports/index.html">Search</a></li>
+            <li><a href="../reports/create_report.html">Post Report</a></li>
+            <li><a href="../dashboard/user.html">Dashboard</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <!-- inject: auth_state (if logged in, show profile dropdown) -->
+          <a href="../auth/login.html" class="btn btn--ghost">Login</a>
+          <a href="../auth/register.html" class="btn btn--found">Register</a>
+          <button
+            id="menuToggle"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="siteNav"
+          >
+            Menu
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- inject: page_content -->
+      <section class="section">
+        <div class="container">
+          <p class="sr-only">
+            This layout is intended for server-side inclusion.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="../../public/js/main.js" defer></script>
+  </body>
+</html>
