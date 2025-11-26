@@ -29,6 +29,8 @@ if ($uri === '' || $uri === '/' || $uri === '/home' || $uri === '/home/index.htm
     $file = __DIR__ . '/views/reports/index.html';
 } elseif ($uri === '/reports/create_report.html' || $uri === '/reports/create_report') {
     $file = __DIR__ . '/views/reports/create_report.html';
+} elseif ($uri === '/reports/show.html' || str_starts_with($uri, '/reports/show')) {
+    $file = __DIR__ . '/views/reports/show.html';
 } elseif (str_starts_with($uri, '/dashboard') || $uri === '/dashboard/user.html') {
     $file = __DIR__ . '/views/dashboard/user.html';
 } else {
