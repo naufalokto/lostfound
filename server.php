@@ -1,24 +1,46 @@
 <?php
 
 require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/app/Core/Database.php';
+require_once __DIR__ . '/app/Core/Model.php';
+require_once __DIR__ . '/app/Core/Controller.php';
+require_once __DIR__ . '/app/Core/Auth.php';
+require_once __DIR__ . '/app/Core/Middleware.php';
+require_once __DIR__ . '/app/Core/Router.php';
 
-$uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+// Simple autoloader for Models / Controllers / Core classes
+spl_autoload_register(function (string $class): void {
+    $base = __DIR__ . '/app/';
+    $paths = [
+        $base . 'Models/' . $class . '.php',
+        $base . 'Controllers/' . $class . '.php',
+        $base . 'Core/' . $class . '.php',
+    ];
+    foreach ($paths as $path) {
+        if (file_exists($path)) {
+            require_once $path;
+            return;
+        }
+    }
+});
+
+$uri    = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$method = $_SERVER['REQUEST_METHOD'];
 
 // Serve static assets from /public (CSS, JS, images)
-if ($uri !== '/' && file_exists(__DIR__ . $uri)) {
+if (str_starts_with($uri, '/public/') && file_exists(__DIR__ . $uri)) {
     return false; // let PHP built-in server serve the file directly
 }
 
-// Normalize base path (if hosted in subdirectory)
-$basePath = rtrim(parse_url(BASE_URL, PHP_URL_PATH), '/');
-if ($basePath && str_starts_with($uri, $basePath)) {
-    $uri = substr($uri, strlen($basePath));
-    if ($uri === false) {
-        $uri = '/';
-    }
+// API routes (JSON for Postman / frontend)
+if (str_starts_with($uri, '/api/')) {
+    header('Content-Type: application/json');
+    $router = new Router();
+    $router->dispatch($method, $uri);
+    exit;
 }
 
-// Map routes to static HTML views in /views
+// Frontend static HTML (views)
 if ($uri === '' || $uri === '/' || $uri === '/home' || $uri === '/home/index.html') {
     $file = __DIR__ . '/views/home/index.html';
 } elseif ($uri === '/login' || $uri === '/auth/login.html') {
