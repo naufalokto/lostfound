@@ -1,0 +1,28 @@
+# Environment files
+.env
+.env.local
+
+# Storage
+/storage/logs/*
+/storage/cache/*
+!/storage/logs/.gitkeep
+!/storage/cache/.gitkeep
+
+# Uploads
+/public/uploads/*
+!/public/uploads/.gitkeep
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vendor (if using Composer)
+/vendor/
+

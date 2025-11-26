@@ -1,0 +1,12 @@
+# Allow access to migrate.php
+<Files "migrate.php">
+    Order allow,deny
+    Allow from all
+</Files>
+
+# Deny access to SQL files
+<FilesMatch "\.sql$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
